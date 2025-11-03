@@ -1,0 +1,57 @@
+================================================================================
+UniRef50 Dataset Preparation Pipeline
+================================================================================
+
+[Step 1/6] Loading FASTA file: uniref50_partial.fasta
+           Loaded 9,118 sequences
+
+[Step 2/6] Filtering synthetic constructs...
+           Removed 0 synthetic constructs
+           Remaining: 9,118 sequences
+
+[Step 3/6] Creating validation split (0.5%)...
+           Train set: 9,073 sequences
+           Validation set: 45 sequences
+
+           Writing temporary FASTA files...
+
+[Step 4/6] Running MMseqs2 similarity search...
+
+=== Running MMseqs2 similarity search ===
+Creating train database...
+Creating validation database...
+Running similarity search (this may take a while)...
+Converting results to TSV...
+
+[Step 5/6] Removing similar sequences from train set...
+           Found 223 train sequences similar to validation
+           Removed 223 sequences from train set
+           Final train set: 8,850 sequences
+
+[Step 6/6] Creating HuggingFace dataset...
+
+DatasetDict({
+    train: Dataset({
+        features: ['sequence_id', 'description', 'sequence', 'length'],
+        num_rows: 8850
+    })
+    validation: Dataset({
+        features: ['sequence_id', 'description', 'sequence', 'length'],
+        num_rows: 45
+    })
+})
+
+           Saving dataset locally to test_output/dataset...
+Saving the dataset (0/1 shards):   0%|          | 0/8850 [00:00<?, ? examples/s]Saving the dataset (1/1 shards): 100%|██████████| 8850/8850 [00:00<00:00, 166863.37 examples/s]Saving the dataset (1/1 shards): 100%|██████████| 8850/8850 [00:00<00:00, 165514.43 examples/s]
+Saving the dataset (0/1 shards):   0%|          | 0/45 [00:00<?, ? examples/s]Saving the dataset (1/1 shards): 100%|██████████| 45/45 [00:00<00:00, 13454.78 examples/s]Saving the dataset (1/1 shards): 100%|██████████| 45/45 [00:00<00:00, 12956.94 examples/s]
+
+================================================================================
+SUMMARY
+================================================================================
+Total UniRef50 sequences processed: 9,118
+Synthetic constructs filtered: 0
+Validation set size: 45 (0.5%)
+Train sequences removed (≥50% identity to val): 223
+Final train set size: 8,850
+Final validation set size: 45
+================================================================================

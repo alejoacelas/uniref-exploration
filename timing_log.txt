@@ -1,0 +1,20 @@
+UniRef50 Dataset Preparation - Timing Log
+================================================================================
+
+Sequences processed: 9,118
+Threads used: 64
+
+Step timings:
+  Load FASTA: 0:00:00
+  Filter synthetic: 0:00:00
+  Create splits: 0:00:00
+  MMseqs2 total: 0:03:05
+    - createdb_train: 0:00:00
+    - createdb_val: 0:00:00
+    - search: 0:03:04
+    - convertalis: 0:00:00
+    - cleanup: 0:00:00
+  Remove similar: 0:00:00
+  Create dataset: 0:00:01
+
+Total time: 0:03:11

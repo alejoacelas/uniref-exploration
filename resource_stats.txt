@@ -1,0 +1,48 @@
+Resource Monitoring Summary
+================================================================================
+
+Step: load_fasta
+  Duration: 0:00:00
+  CPU: mean=5.0%, max=10.0%
+  Memory: peak=479 MB, mean=479 MB
+  System CPU: mean=0.1%, max=0.2%
+  System Memory: min_available=745.40 GB, max_used=1.4%
+  I/O Read: 0.0 MB
+  I/O Write: 0.0 MB
+
+Step: filter_synthetic
+  Duration: 0:00:00
+  CPU: mean=40.5%, max=81.0%
+  Memory: peak=582 MB, mean=582 MB
+  System CPU: mean=0.8%, max=1.6%
+  System Memory: min_available=745.29 GB, max_used=1.4%
+  I/O Read: 0.0 MB
+  I/O Write: 0.0 MB
+
+Step: create_split
+  Duration: 0:03:05
+  CPU: mean=0.4%, max=57.7%
+  Memory: peak=582 MB, mean=582 MB
+  System CPU: mean=91.7%, max=98.2%
+  System Memory: min_available=731.75 GB, max_used=3.2%
+  I/O Read: 0.0 MB
+  I/O Write: 298.3 MB
+
+Step: remove_similar
+  Duration: 0:00:00
+  CPU: mean=0.0%, max=0.0%
+  Memory: peak=582 MB, mean=582 MB
+  System CPU: mean=1.7%, max=3.1%
+  System Memory: min_available=734.46 GB, max_used=2.8%
+  I/O Read: 0.0 MB
+  I/O Write: 0.0 MB
+
+Step: create_dataset
+  Duration: 0:00:01
+  CPU: mean=33.4%, max=99.2%
+  Memory: peak=911 MB, mean=691 MB
+  System CPU: mean=1.7%, max=2.7%
+  System Memory: min_available=734.35 GB, max_used=2.8%
+  I/O Read: 0.0 MB
+  I/O Write: 0.0 MB
+
