@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<UniRef100 xmlns="http://uniprot.org/uniref" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://uniprot.org/uniref http://www.uniprot.org/support/docs/uniref.xsd" 
+releaseDate="2025-06-18" version="2025_03" >
+<entry id="UniRef100_Q6GZX4" updated="2022-01-19">
+<name>Cluster: Putative transcription factor 001R</name>
+<property type="member count" value="4"/>
+<property type="common taxon" value="Ranavirus"/>
+<property type="common taxon ID" value="10492"/>
+<representativeMember>
+  <dbReference type="UniProtKB ID" id="001R_FRG3G">
+    <property type="UniProtKB accession" value="Q6GZX4"/>
+    <property type="UniParc ID" value="UPI00003B0FD4"/>
+    <property type="UniRef90 ID" value="UniRef90_Q6GZX4"/>
+    <property type="UniRef50 ID" value="UniRef50_Q6GZX4"/>
+    <property type="protein name" value="Putative transcription factor 001R"/>
+    <property type="NCBI taxonomy" value="654924"/>
+    <property type="source organism" value="Frog virus 3 (isolate Goorha) (FV-3)"/>
+    <property type="length" value="256"/>
+    <property type="isSeed" value="true"/>
+  </dbReference>
+  <sequence length="256" checksum="B4840739BF7D4121">MAFSAEDVLKEYDRRRRMEALLLSLYYPNDRKLLDYKEWSPPRVQVECPKAPVEWNNPPSEKGLIVGHFSGIKYKGEKAQASEVDVNKMCCWVSKFKDAMRRYQGIQTCKIPGKVLSDLDAKIKAYNLTVEGVEGFVRYSRVTKQHVAAFLKELRHSKQYENVNLIHYILTDKRVDIQHLEKDLVKDFKALVESAHRMRQGHMINVKYILYQLLKKHGHGPDGPDILTVKTGSKGVLYDDSFRKIYTDLGWKFTPL</sequence>
+</representativeMember>
+<member>
+  <dbReference type="UniProtKB ID" id="A0A0F6NZX8_FRG3V">
+    <property type="UniProtKB accession" value="A0A0F6NZX8"/>
+    <property type="UniParc ID" value="UPI00003B0FD4"/>
+    <property type="protein name" value="Putative replicating factor"/>
+    <property type="NCBI taxonomy" value="10493"/>
+    <property type="source organism" value="Frog virus 3 (FV-3)"/>
+    <property type="length" value="256"/>
+  </dbReference>
+</member>
+<member>
+  <dbReference type="UniProtKB ID" id="A0A8F9W913_9VIRU">
+    <property type="UniProtKB accession" value="A0A8F9W913"/>
+    <property type="UniParc ID" value="UPI00003B0FD4"/>
+    <property type="protein name" value="Replicating factor"/>
+    <property type="NCBI taxonomy" value="2866054"/>
+    <property type="source organism" value="Stickleback virus"/>
+    <property type="length" value="256"/>
+  </dbReference>
+</member>
+<member>
+  <dbReference type="UniProtKB ID" id="A0A8F9R9Q6_9VIRU">
+    <property type="UniProtKB accession" value="A0A8F9R9Q6"/>
+    <property type="UniParc ID" value="UPI00003B0FD4"/>
+    <property type="protein name" value="Replicating factor"/>
+    <property type="NCBI taxonomy" value="2866055"/>
+    <property type="source organism" value="Tadpole virus 2"/>
+    <property type="length" value="256"/>
+  </dbReference>
+</member>
+</entry>
+<entry id="UniRef100_Q6GZX3" updated="2019-11-13">
+<name>Cluster: Uncharacterized protein 002L</name>
+<property type="member count" value="3"/>
+<property type="common taxon" value="Frog virus 3"/>
+<property type="common taxon ID" value="10493"/>
+<representativeMember>
+  <dbReference type="UniProtKB ID" id="002L_FRG3G">
+    <property type="UniProtKB accession" value="Q6GZX3"/>
+    <property type="UniParc ID" value="UPI00003B0FD5"/>
+    <property type="UniRef90 ID" value="UniRef90_Q6GZX3"/>
+    <property type="UniRef50 ID" value="UniRef50_Q6GZX3"/>
+    <property type="protein name" value="Uncharacterized protein 002L"/>
+    <property type="NCBI taxonomy" value="654924"/>
+    <property type="source organism" value="Frog virus 3 (isolate Goorha) (FV-3)"/>
+    <property type="length" value="320"/>
+    <property type="isSeed" value="true"/>
+  </dbReference>
+  <sequence length="320" checksum="9E110808B6E328E0">MSIIGATRLQNDKSDTYSAGPCYAGGCSAFTPRGTCGKDWDLGEQTCASGFCTSQPLCARIKKTQVCGLRYSSKGKDPLVSAEWDSRGAPYVRCTYDADLIDTQAQVDQFVSMFGESPSLAERYCMRGVKNTAGELVSRVSSDADPAGGWCRKWYSAHRGPDQDAALGSFCIKNPGAADCKCINRASDPVYQKVKTLHAYPDQCWYVPCAADVGELKMGTQRDTPTNCPTQVCQIVFNMLDDGSVTMDDVKNTINCDFSKYVPPPPPPKPTPPTPPTPPTPPTPPTPPTPPTPRPVHNRKVMFFVAGAVLVAILISTVRW</sequence>
+</representativeMember>
+<member>
+  <dbReference type="UniProtKB ID" id="A0A5B8P292_FRG3V">
+    <property type="UniProtKB accession" value="A0A5B8P292"/>
+    <property type="UniParc ID" value="UPI00003B0FD5"/>
+    <property type="protein name" value="Putative myristylated membrane"/>
+    <property type="NCBI taxonomy" value="10493"/>
+    <property type="source organism" value="Frog virus 3 (FV-3)"/>
+    <property type="length" value="320"/>
+  </dbReference>
+</member>
+<member>
+  <dbReference type="UniProtKB ID" id="A0A5B8P3G4_FRG3V">
+    <property type="UniProtKB accession" value="A0A5B8P3G4"/>
+    <property type="UniParc ID" value="UPI0011BB41D4"/>
+    <property type="protein name" value="Putative myristylated membrane"/>
+    <property type="NCBI taxonomy" value="10493"/>
+    <property type="source organism" value="Frog virus 3 (FV-3)"/>
+    <property type="length" value="319"/>
+  </dbReference>
+</member>
+</entry>
+<entry id="UniRef100_Q197F8" updated="2012-11-28">
+<name>Cluster: Uncharacterized protein 002R</name>
+<property type="member count" value="1"/>
+<property type="common taxon" value="Invertebrate iridescent virus 3"/>
+<property type="common taxon ID" value="345201"/>
+<representativeMember>
+  <dbReference type="UniProtKB ID" id="002R_IIV3">
+    <property type="UniProtKB accession" value="Q197F8"/>
+    <property type="UniParc ID" value="UPI0000D83464"/>
+    <property type="UniRef90 ID" value="UniRef90_Q197F8"/>
+    <property type="UniRef50 ID" value="UniRef50_Q197F8"/>
+    <property type="protein name" value="Uncharacterized protein 002R"/>
+    <property type="NCBI taxonomy" value="345201"/>
+    <property type="source organism" value="Invertebrate iridescent virus 3 (IIV-3) (Mosquito iridescent virus)"/>
+    <property type="length" value="458"/>
+    <property type="isSeed" value="true"/>
+  </dbReference>
+  <sequence length="458" checksum="E46E5C85D7ACA139">MASNTVSAQGGSNRPVRDFSNIQDVAQFLLFDPIWNEQPGSIVPWKMNREQALAERYPELQTSEPSEDYSGPVESLELLPLEIKLDIMQYLSWEQISWCKHPWLWTRWYKDNVVRVSAITFEDFQREYAFPEKIQEIHFTDTRAEEIKAILETTPNVTRLVIRRIDDMNYNTHGDLGLDDLEFLTHLMVEDACGFTDFWAPSLTHLTIKNLDMHPRWFGPVMDGIKSMQSTLKYLYIFETYGVNKPFVQWCTDNIETFYCTNSYRYENVPRPIYVWVLFQEDEWHGYRVEDNKFHRRYMYSTILHKRDTDWVENNPLKTPAQVEMYKFLLRISQLNRDGTGYESDSDPENEHFDDESFSSGEEDSSDEDDPTWAPDSDDSDWETETEEEPSVAARILEKGKLTITNLMKSLGFKPKPKKIQSIDRYFCSLDSNYNSEDEDFEYDSDSEDDDSDSEDDC</sequence>
+</representativeMember>
+</entry>
+<entry id="UniRef100_Q197F7" updated="2012-11-28">
+<name>Cluster: Uncharacterized protein 003L</name>
+<property type="member count" value="1"/>
+<property type="common taxon" value="Invertebrate iridescent virus 3"/>
+<property type="common taxon ID" value="345201"/>
+<representativeMember>
+  <dbReference type="UniProtKB ID" id="003L_IIV3">
+    <property type="UniProtKB accession" value="Q197F7"/>
+    <property type="UniParc ID" value="UPI0000D83465"/>
+    <property type="UniRef90 ID" value="UniRef90_Q197F7"/>
+    <property type="UniRef50 ID" value="UniRef50_Q197F7"/>
+    <property type="protein name" value="Uncharacterized protein 003L"/>
+    <property type="NCBI taxonomy" value="345201"/>
+    <property type="source organism" value="Invertebrate iridescent virus 3 (IIV-3) (Mosquito iridescent virus)"/>
+    <property type="length" value="156"/>
+    <property type="isSeed" value="true"/>
+  </dbReference>
+  <sequence length="156" checksum="D48A43940FF8C815">MYQAINPCPQSWYGSPQLEREIVCKMSGAPHYPNYYPVHPNALGGAWFDTSLNARSLTTTPSLTTCTPPSLAACTPPTSLGMVDSPPHINPPRRIGTLCFDFGSAKSPQRCECVASDRPSTTSNTAPDTYRLLITNSKTRKNNYGTCRLEPLTYGI</sequence>
+</representativeMember>
+</entry>
+<entry id="UniRef100_Q6GZX2" updated="2025-06-18">
+<name>Cluster: Uncharacterized protein 3R</name>
+<property type="member count" value="7"/>
+<property type="common taxon" value="Ranavirus"/>
+<property type="common taxon ID" value="10492"/>
+<representativeMember>
+  <dbReference type="UniProtKB ID" id="003R_FRG3G">
+    <property type="UniProtKB accession" value="Q6GZX2"/>
+    <property type="UniParc ID" value="UPI00003B0FD6"/>
+    <property type="UniRef90 ID" value="UniRef90_Q6GZX2"/>
+    <property type="UniRef50 ID" value="UniRef50_Q6GZX2"/>
+    <property type="protein name" value="Uncharacterized protein 3R"/>
+    <property type="NCBI taxonomy" value="654924"/>
+    <property type="source organism" value="Frog virus 3 (isolate Goorha) (FV-3)"/>
+    <property type="length" value="438"/>
