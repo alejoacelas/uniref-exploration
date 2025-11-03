@@ -24,40 +24,49 @@ echo "  HF dataset: $HF_DATASET"
 echo "  Log file: $LOG_FILE"
 echo ""
 
-# Check disk space (need ~500GB)
+# Install dependencies
+echo "📦 Installing required dependencies..."
+pip install datasets python-dotenv || { echo "❌ pip install failed"; exit 1; }
+conda install -c bioconda -c conda-forge mmseqs2 -y || { echo "❌ conda install failed"; exit 1; }
+echo "✓ Dependencies installed"
+echo ""
+
+# Check disk space (need ~50GB for UniRef50 FASTA file)
 AVAILABLE=$(df -BG . | tail -1 | awk '{print $4}' | sed 's/G//')
-if [ "$AVAILABLE" -lt 500 ]; then
-    echo "⚠️  Warning: Only ${AVAILABLE}GB available. Need at least 500GB."
+if [ "$AVAILABLE" -lt 50 ]; then
+    echo "⚠️  Warning: Only ${AVAILABLE}GB available. Need at least ~50GB for UniRef50 FASTA file (~40GB compressed)."
     read -p "Continue anyway? (y/N) " -n 1 -r
     echo
     [[ ! $REPLY =~ ^[Yy]$ ]] && exit 1
 fi
 
-# Download and extract UniRef50 2025_03 if not exists
+# Download and extract UniRef50 2025_03 if not exists (streaming to save space)
 if [ ! -f "$FASTA_FILE" ]; then
-    echo "📥 Downloading UniRef 2025_03 archive (~254GB, may take several hours)..."
-    echo "   This contains UniRef50, UniRef90, and UniRef100"
+    echo "📥 Streaming extraction of UniRef50 FASTA from archive (~254GB archive, ~40GB output)..."
+    echo "   This will extract ONLY uniref50.fasta.gz without storing the full archive"
+    echo "   Note: This will download the entire archive but stream it directly without storage"
 
-    if [ ! -f "$ARCHIVE_FILE" ]; then
-        wget -c "$ARCHIVE_URL" || { echo "❌ Download failed"; exit 1; }
-        echo "✓ Archive downloaded"
-    else
-        echo "✓ Using existing archive: $ARCHIVE_FILE"
+    # Stream extract: download archive, extract only uniref50.tar to temp pipe
+    echo ""
+    echo "📦 Stage 1: Extracting uniref50.tar from remote archive (streaming)..."
+    wget -qO- "$ARCHIVE_URL" | tar -xz uniref50.tar || { echo "❌ Extraction failed"; exit 1; }
+    
+    if [ ! -f "uniref50.tar" ]; then
+        echo "❌ Failed to extract uniref50.tar. Archive may be corrupted or network issue."
+        exit 1
     fi
+    echo "✓ Extracted uniref50.tar (temporary)"
 
     echo ""
-    echo "📦 Extracting UniRef50 from archive..."
-    tar -xzf "$ARCHIVE_FILE" uniref50.tar || { echo "❌ Extraction failed"; exit 1; }
-    echo "✓ Extracted uniref50.tar"
-
-    echo ""
-    echo "📦 Extracting FASTA file..."
+    echo "📦 Stage 2: Extracting FASTA file from uniref50.tar..."
     tar -xf uniref50.tar uniref50.fasta.gz || { echo "❌ Extraction failed"; exit 1; }
     echo "✓ Extracted $FASTA_FILE"
 
-    # Cleanup intermediate tar file
+    # Cleanup intermediate tar file immediately
+    echo ""
+    echo "🧹 Cleaning up intermediate files..."
     rm -f uniref50.tar
-    echo "✓ Cleaned up intermediate tar file"
+    echo "✓ Removed uniref50.tar (saved space)"
 else
     echo "✓ Using existing $FASTA_FILE"
 fi

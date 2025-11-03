@@ -140,7 +140,7 @@ Members:
 mmseqs_test/
 ├── test_input.fasta              # Input: 200 test sequences (67 KB)
 ├── DB_clu.tsv                    # Primary output: clustering results (6.7 KB)
-├── run_full_uniref50_clustering.sh # Script for full run (4.1 KB)
+├── run_clustering.sh # Script for full run (4.1 KB)
 ├── MMSEQS2_GUIDE.md              # This comprehensive guide
 │
 ├── DB*                           # MMseqs2 sequence database files
@@ -249,7 +249,7 @@ Created during cascaded clustering, contains intermediate results:
 - Can be placed on fast scratch storage (SSD/NVMe recommended)
 
 #### 6. Scripts
-- **`run_full_uniref50_clustering.sh`**: Production-ready clustering script
+- **`run_clustering.sh`**: Production-ready clustering script
   - Takes input FASTA, output prefix, threads, temp directory
   - Includes summary statistics generation
   - Has `--remove-tmp-files 1` enabled
@@ -718,17 +718,17 @@ def merge_clusters_by_rep_similarity(tsv_file, similarity_tsv, min_sim=0.8):
 
 ```bash
 # Syntax
-./run_full_uniref50_clustering.sh <input_fasta> <output_prefix> <threads> <tmp_dir>
+./run_clustering.sh <input_fasta> <output_prefix> <threads> <tmp_dir>
 
 # Example
-./run_full_uniref50_clustering.sh \
+./run_clustering.sh \
     /path/to/uniref50.fasta.gz \
     uniref50_clustered \
     128 \
     /scratch/tmp_mmseqs
 
 # Monitor progress (if you redirect output)
-./run_full_uniref50_clustering.sh ... > clustering.log 2>&1 &
+./run_clustering.sh ... > clustering.log 2>&1 &
 tail -f clustering.log
 ```
 

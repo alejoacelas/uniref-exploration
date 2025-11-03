@@ -26,6 +26,13 @@ echo "  Threads: $THREADS"
 echo "  Log file: $LOG_FILE"
 echo ""
 
+# Install dependencies
+echo "📦 Installing required dependencies..."
+pip install datasets python-dotenv || { echo "❌ pip install failed"; exit 1; }
+conda install -c bioconda -c conda-forge mmseqs2 -y || { echo "❌ conda install failed"; exit 1; }
+echo "✓ Dependencies installed"
+echo ""
+
 # Check disk space (need ~5GB)
 AVAILABLE=$(df -BG . | tail -1 | awk '{print $4}' | sed 's/G//')
 if [ "$AVAILABLE" -lt 5 ]; then
