@@ -8,11 +8,10 @@ echo ""
 
 # Configuration
 RELEASE="2025_03"
-ARCHIVE_URL="https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-${RELEASE}/uniref/uniref${RELEASE}.tar.gz"
-ARCHIVE_FILE="uniref${RELEASE}.tar.gz"
+FASTA_URL="https://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.fasta.gz"
 FASTA_FILE="uniref50.fasta.gz"
 OUTPUT_DIR="./uniref50_output"
-HF_DATASET="alejoacelas/uniref50-2025-3"
+HF_DATASET="alejoacelas/uniref50-2025-10"
 THREADS=${THREADS:-$(nproc)}  # Use all CPUs by default
 LOG_FILE="full_pipeline_$(date +%Y%m%d_%H%M%S).log"
 
@@ -26,41 +25,53 @@ echo ""
 
 # Check disk space (need ~500GB)
 AVAILABLE=$(df -BG . | tail -1 | awk '{print $4}' | sed 's/G//')
-if [ "$AVAILABLE" -lt 500 ]; then
-    echo "⚠️  Warning: Only ${AVAILABLE}GB available. Need at least 500GB."
+if [ "$AVAILABLE" -lt 50 ]; then
+    echo "⚠️  Warning: Only ${AVAILABLE}GB available. Need at least 50GB."
     read -p "Continue anyway? (y/N) " -n 1 -r
     echo
     [[ ! $REPLY =~ ^[Yy]$ ]] && exit 1
 fi
 
-# Download and extract UniRef50 2025_03 if not exists
+# Download UniRef50 FASTA if not exists
 if [ ! -f "$FASTA_FILE" ]; then
-    echo "📥 Downloading UniRef 2025_03 archive (~254GB, may take several hours)..."
-    echo "   This contains UniRef50, UniRef90, and UniRef100"
-
-    if [ ! -f "$ARCHIVE_FILE" ]; then
-        wget -c "$ARCHIVE_URL" || { echo "❌ Download failed"; exit 1; }
-        echo "✓ Archive downloaded"
-    else
-        echo "✓ Using existing archive: $ARCHIVE_FILE"
-    fi
-
-    echo ""
-    echo "📦 Extracting UniRef50 from archive..."
-    tar -xzf "$ARCHIVE_FILE" uniref50.tar || { echo "❌ Extraction failed"; exit 1; }
-    echo "✓ Extracted uniref50.tar"
-
-    echo ""
-    echo "📦 Extracting FASTA file..."
-    tar -xf uniref50.tar uniref50.fasta.gz || { echo "❌ Extraction failed"; exit 1; }
-    echo "✓ Extracted $FASTA_FILE"
-
-    # Cleanup intermediate tar file
-    rm -f uniref50.tar
-    echo "✓ Cleaned up intermediate tar file"
+    echo "📥 Downloading UniRef50 FASTA file (may take several hours)..."
+    wget -c "$FASTA_URL" -O "$FASTA_FILE" || { echo "❌ Download failed"; exit 1; }
+    echo "✓ Downloaded $FASTA_FILE"
 else
     echo "✓ Using existing $FASTA_FILE"
 fi
+
+# Validate downloaded file
+echo "🔍 Validating FASTA file..."
+if [ ! -f "$FASTA_FILE" ]; then
+    echo "❌ Error: FASTA file not found: $FASTA_FILE"
+    exit 1
+fi
+
+if [ ! -s "$FASTA_FILE" ]; then
+    echo "❌ Error: FASTA file is empty: $FASTA_FILE"
+    exit 1
+fi
+
+# Check gzip integrity
+echo "   Checking gzip integrity..."
+if ! gunzip -t "$FASTA_FILE" 2>/dev/null; then
+    echo "❌ Error: FASTA file is corrupted or not a valid gzip file"
+    echo "   Consider re-downloading: rm $FASTA_FILE && $0"
+    exit 1
+fi
+
+# Check file size (should be several GB, warn if suspiciously small)
+FILE_SIZE_GB=$(du -BG "$FASTA_FILE" | cut -f1 | sed 's/G//')
+if [ "$FILE_SIZE_GB" -lt 1 ]; then
+    echo "⚠️  Warning: File size is only ${FILE_SIZE_GB}GB, which seems unusually small"
+    echo "   Expected size: ~25-30GB for UniRef50 FASTA"
+    read -p "Continue anyway? (y/N) " -n 1 -r
+    echo
+    [[ ! $REPLY =~ ^[Yy]$ ]] && exit 1
+fi
+
+echo "✓ File validation passed (size: ${FILE_SIZE_GB}GB)"
 echo ""
 
 # Check HF token
@@ -98,13 +109,12 @@ if [ $? -eq 0 ]; then
     echo ""
 
     # Cleanup prompt
-    read -p "Delete intermediate files to save ~450GB? (y/N) " -n 1 -r
+    read -p "Delete intermediate files to save space? (y/N) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "🧹 Cleaning up..."
         rm -rf "$OUTPUT_DIR/mmseqs2" "$OUTPUT_DIR"/*.fasta
-        rm -f "$ARCHIVE_FILE"  # Remove the large archive
-        echo "✓ Cleanup complete (saved ~450GB)"
+        echo "✓ Cleanup complete"
     fi
 else
     echo ""
