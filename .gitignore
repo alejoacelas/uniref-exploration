@@ -1,0 +1,13 @@
+.env
+augmented_dataset/
+**/*.db
+**/*.xml.gz
+**/*.log
+**/*.checkpoint
+**/*.txt
+**/*.json
+**/*.csv
+**/*.tsv
+**/*.parquet
+**/*.feather
+**/*.arrow
