@@ -40,8 +40,8 @@ except ImportError:
 
 # Configuration
 SOURCE_DATASET = "alejoacelas/uniref50-2025-10"
-TARGET_DATASET = "alejoacelas/uniref50-2025-10-v2"
-DB_FILE = "uniref50_mappings.db"  # Using test DB for now
+TARGET_DATASET = "alejoacelas/uniref50-2025-10-v3"
+DB_FILE = "uniref50_mappings_optimized.db"  # Using test DB for now
 PROGRESS_INTERVAL = 10000
 BATCH_SIZE = 50000  # HuggingFace batch size
 SQL_BATCH_SIZE = 900  # SQLite parameter limit (stay under 999)
