@@ -11,3 +11,5 @@ augmented_dataset/
 **/*.parquet
 **/*.feather
 **/*.arrow
+uniref50.xml.bgz.gzidx
+uniref50.xml.bgz
