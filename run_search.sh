@@ -47,6 +47,7 @@ mmseqs search "$QUERY_DB" "$TARGET_CHUNK_DB" "$RESULT_DB" "$TMP_DIR" \
   --min-seq-id 0.0 \
   --cov-mode 0 -c 0.3 \
   --max-seqs 200 \
+  --threads 1
 
 echo "  Step 2: Converting alignments to TSV..."
 # Convert alignments to TSV with continuous metrics

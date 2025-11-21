@@ -1,19 +1,15 @@
 # MMseqs2 Filtering Pipeline - Development Version
 
-This is a complete implementation of the MMseqs2-based sequence filtering pipeline described in INSTRUCTIONS.md, adapted for single-CPU development and testing.
+This is a complete implementation of the MMseqs2-based sequence filtering pipeline described in INSTRUCTIONS.md.
 
 ## Quick Start
 
-The pipeline can now run completely from scratch starting with just the FASTA files. Simply place your files in the `data/` directory and run:
+Tu run on the server:
 
-```bash
-./run_complete_pipeline.sh
-```
-
-**Requirements:**
-- `data/query.fasta` - Query sequences
-- `data/target.fasta` - Target sequences
-- MMseqs2 installed and available in PATH
+* Download `query.fasta` and `target.fasta` to `data/`
+* Install [MMSeqs2](https://github.com/soedinglab/MMseqs2?tab=readme-ov-file#installation)
+* Edit `run_complete_pipeline.sh` to distribute the `run_search.sh` runs across multiple CPUs, instead of running them in sequence.
+* Change `--threads` in `run_search.sh` to use multiple CPU threads
 
 The script will automatically:
 1. Create all necessary directories
@@ -21,7 +17,7 @@ The script will automatically:
 3. Split target database into chunks
 4. Run searches and per-target scoring on each chunk
 5. Aggregate results and compute exclusion thresholds
-6. Generate final results
+6. Store a TSV list of accessions, with their max seq-similarity and a dummy flag for exclusion at `results/final/`
 
 ## What the Pipeline Does
 
@@ -29,8 +25,7 @@ The script will automatically:
 2. **Parallel Processing**: For each chunk:
    - Runs MMseqs2 search (queries vs chunk targets) with coverage filtering (80%)
    - Converts alignments to TSV format
-   - Computes per-target similarity scores: `score = max(fident)`
-   - Applies additional filtering (min alignment length: 50)
+   - Computes per-target similarity scores
 3. **Aggregation**: Combines all per-target scores and computes exclusion threshold
 4. **Export**: Creates final TSV with exclusion flags for dataset integration
 
@@ -44,11 +39,9 @@ The pipeline is designed for easy parallelization:
 - Chunks can be processed in parallel without dependencies
 
 ### Parallel Execution Options
-The main pipeline script (`run_complete_pipeline.sh`) includes a clearly marked section with three parallel execution options:
+The main pipeline script (`run_complete_pipeline.sh`) includes a clearly marked section to insert parallel execution. 
 
-1. **GNU Parallel**: `seq 0 $((N_SPLITS-1)) | parallel -j 4 "./run_search.sh {} $N_SPLITS"`
-2. **Slurm Arrays**: Submit as `sbatch --array=0-$((N_SPLITS-1))`
-3. **Background Jobs**: Run chunks as background processes with `wait`
+**Slurm Arrays**: Submit as `sbatch --array=0-$((N_SPLITS-1))`
 
 ## Files Created
 
@@ -63,16 +56,6 @@ The main pipeline script (`run_complete_pipeline.sh`) includes a clearly marked 
 - `results/per_target/` - Per-target similarity scores per chunk
 - `results/final/target_scores_and_flags.tsv` - **Final output** with exclusion flags
 - `results/thresholds/threshold_log.txt` - Threshold computation log
-
-## Results Summary
-
-With the sample data:
-- **Query sequences**: 10
-- **Target sequences**: 10,000
-- **Targets with similarity hits**: 338 (3.4%)
-- **Targets flagged for exclusion**: 338 (3.4%)
-
-Only targets with meaningful similarity to the query set are flagged for exclusion.
 
 ## Key Parameters (Tunable)
 
@@ -105,7 +88,6 @@ For production use with 70M targets:
 The final file `results/final/target_scores_and_flags.tsv` contains:
 - `target` - Sequence identifier
 - `score` - Similarity score (0.0 to 1.0)
-- `pre_excluded` - Whether pre-excluded (always False in this version)
 - `exclude` - Final exclusion flag (True/False)
 
 This can be merged with HuggingFace datasets using the `target` column as the join key.
