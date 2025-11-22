@@ -10,6 +10,7 @@ Tu run on the server:
 * Install [MMSeqs2](https://github.com/soedinglab/MMseqs2?tab=readme-ov-file#installation)
 * Edit `run_complete_pipeline.sh` to distribute the `run_search.sh` runs across multiple CPUs, instead of running them in sequence.
 * Change `--threads` in `run_search.sh` to use multiple CPU threads
+* If the run it's taking too long, lower the sensitivity (to 5 or 6) using the `-s` flag in `run_search.sh`
 
 The script will automatically:
 1. Create all necessary directories
