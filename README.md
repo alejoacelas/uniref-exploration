@@ -6,7 +6,7 @@ This is a complete implementation of the MMseqs2-based sequence filtering pipeli
 
 Tu run on the server:
 
-* [Download](https://huggingface.co/datasets/alejoacelas/uniref50-2025-10-viral-split-fasta) `query.fasta` and `target.fasta` to `data/`
+* [Download](https://huggingface.co/datasets/alejoacelas/uniref50-2025-10-viral-split-fasta/tree/main) `query.fasta` and `target.fasta` to `data/`
 * Install [MMSeqs2](https://github.com/soedinglab/MMseqs2?tab=readme-ov-file#installation)
 * Edit `run_complete_pipeline.sh` to distribute the `run_search.sh` runs across multiple CPUs, instead of running them in sequence.
 * Change `--threads` in `run_search.sh` to use multiple CPU threads
